@@ -10,7 +10,7 @@
   },
   "positions": [
     {
-      "symbol": "FPT",
+      "symbol": "DAI",
       "quantity": 1200,
       "avg_price": 118500,
       "current_price": 123800,
