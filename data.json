@@ -1,0 +1,85 @@
+{
+  "updated_at": "2026-05-03 09:30:00",
+  "portfolio": {
+    "nav": 1284500000,
+    "cash": 152300000,
+    "market_value": 1132200000,
+    "cost_value": 1078500000,
+    "profit": 53600000,
+    "profit_pct": 4.97
+  },
+  "positions": [
+    {
+      "symbol": "FPT",
+      "quantity": 1200,
+      "avg_price": 118500,
+      "current_price": 123800,
+      "market_value": 148560000,
+      "profit": 6360000,
+      "profit_pct": 4.47
+    },
+    {
+      "symbol": "MWG",
+      "quantity": 2500,
+      "avg_price": 61200,
+      "current_price": 63800,
+      "market_value": 159500000,
+      "profit": 6500000,
+      "profit_pct": 4.25
+    },
+    {
+      "symbol": "ACB",
+      "quantity": 5000,
+      "avg_price": 25400,
+      "current_price": 26750,
+      "market_value": 133750000,
+      "profit": 6750000,
+      "profit_pct": 5.31
+    },
+    {
+      "symbol": "TCB",
+      "quantity": 4000,
+      "avg_price": 31800,
+      "current_price": 33100,
+      "market_value": 132400000,
+      "profit": 5200000,
+      "profit_pct": 4.09
+    },
+    {
+      "symbol": "HPG",
+      "quantity": 6000,
+      "avg_price": 27100,
+      "current_price": 28450,
+      "market_value": 170700000,
+      "profit": 8100000,
+      "profit_pct": 4.98
+    },
+    {
+      "symbol": "MBB",
+      "quantity": 4500,
+      "avg_price": 24100,
+      "current_price": 25250,
+      "market_value": 113625000,
+      "profit": 5175000,
+      "profit_pct": 4.77
+    },
+    {
+      "symbol": "SSI",
+      "quantity": 3500,
+      "avg_price": 33800,
+      "current_price": 35200,
+      "market_value": 123200000,
+      "profit": 4900000,
+      "profit_pct": 4.14
+    },
+    {
+      "symbol": "VNM",
+      "quantity": 1500,
+      "avg_price": 65400,
+      "current_price": 67100,
+      "market_value": 100650000,
+      "profit": 2550000,
+      "profit_pct": 2.60
+    }
+  ]
+}
