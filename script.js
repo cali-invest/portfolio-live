@@ -1,6 +1,7 @@
 // ===== CONFIG =====
 const FILES = [
-    "PORTFOLIO_raw"
+    "PORTFOLIO_raw",
+    "DSI_raw"
 ];
 
 // ===== INIT =====
