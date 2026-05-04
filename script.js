@@ -102,6 +102,7 @@ function renderCSV(csv) {
 
 // ===== FORMAT CELL =====
 function formatCell(val) {
+    if (val.includes("%")) return val
     const num = parseFloat(val);
     return !isNaN(num) ? num.toLocaleString() : val;
 }
