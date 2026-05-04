@@ -20,6 +20,10 @@ async function preloadAll() {
         const res = await fetch(`data/${name}.csv`);
         const text = await res.text();
         CACHE[name] = text;
+
+        // 👉 lấy last modified
+        const lastModified = res.headers.get("Last-Modified");
+        META[name] = lastModified;
     });
 
     await Promise.all(promises);
@@ -51,6 +55,17 @@ function loadTab(name, btn = null) {
     if (btn) btn.classList.add("active");
 
     renderCSV(CACHE[name]); // 👉 dùng cache
+
+    // 👉 hiển thị last modified
+    const lm = META[name];
+    if (lm) {
+        const dt = new Date(lm);
+        document.getElementById("last-updated").innerText =
+            "Updated: " + dt.toLocaleString();
+    } else {
+        document.getElementById("last-updated").innerText = "";
+    }
+
 }
 
 // ===== RENDER TABLE =====
