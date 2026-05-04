@@ -6,6 +6,7 @@ const FILES = [
 
 // ===== CACHE =====
 const CACHE = {};
+const META  = {};
 
 // ===== INIT =====
 document.addEventListener("DOMContentLoaded", async () => {
