@@ -1,38 +1,85 @@
-let data = {};
+// ===== CONFIG =====
+const FILES = [
+    "PORTFOLIO_raw"
+];
 
-async function loadData() {
-    data = await fetch('data.json').then(r => r.json());
-    showTab('overview');
-}
+// ===== INIT =====
+document.addEventListener("DOMContentLoaded", () => {
+    renderTabs();
+    loadTab(FILES[0]); // load tab đầu tiên
+});
 
-function showTab(tab) {
+// ===== RENDER TABS =====
+function renderTabs() {
     let html = "";
 
-    if (tab === "overview") {
-        html = `
-            <h3>Overview</h3>
-            <p>NAV: ${data.overview.nav}</p>
-            <p>Profit: ${data.overview.profit}</p>
+    FILES.forEach((name, index) => {
+        html += `
+            <button class="tab-btn" onclick="loadTab('${name}', this)">
+                ${name.toUpperCase()}
+            </button>
         `;
-    }
+    });
 
-    if (tab === "holdings") {
-        html = "<h3>Holdings</h3><ul>";
-        data.holdings.forEach(h => {
-            html += `<li>${h.symbol} - ${h.qty} shares</li>`;
-        });
-        html += "</ul>";
-    }
+    document.getElementById("tabs").innerHTML = html;
 
-    if (tab === "trades") {
-        html = "<h3>Trades</h3><ul>";
-        data.trades.forEach(t => {
-            html += `<li>${t.date} - ${t.action} ${t.symbol}</li>`;
-        });
-        html += "</ul>";
+    // active tab đầu tiên
+    setTimeout(() => {
+        const firstBtn = document.querySelector(".tab-btn");
+        if (firstBtn) firstBtn.classList.add("active");
+    }, 0);
+}
+
+// ===== LOAD CSV =====
+async function loadTab(name, btn = null) {
+    try {
+        // highlight active tab
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+
+        const res = await fetch(`data/${name}.csv`);
+        const text = await res.text();
+
+        renderCSV(text);
+
+    } catch (err) {
+        document.getElementById("content").innerHTML = `<p>❌ Load lỗi: ${name}</p>`;
     }
+}
+
+// ===== RENDER TABLE =====
+function renderCSV(csv) {
+    const rows = csv.trim().split("\n").map(r => r.split(","));
+
+    let html = "<table>";
+
+    rows.forEach((row, i) => {
+        html += "<tr>";
+
+        row.forEach(cell => {
+            if (i === 0) {
+                html += `<th>${cell}</th>`;
+            } else {
+                html += `<td>${formatCell(cell)}</td>`;
+            }
+        });
+
+        html += "</tr>";
+    });
+
+    html += "</table>";
 
     document.getElementById("content").innerHTML = html;
 }
 
-loadData();
+// ===== FORMAT CELL =====
+function formatCell(val) {
+    // number format
+    const num = parseFloat(val);
+
+    if (!isNaN(num)) {
+        return num.toLocaleString();
+    }
+
+    return val;
+}
