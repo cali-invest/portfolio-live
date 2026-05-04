@@ -38,8 +38,8 @@ async function loadTab(name, btn = null) {
         document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
         if (btn) btn.classList.add("active");
 
-        //const res = await fetch(`data/${name}.csv`);
-        const res = await fetch(`data/${name}.csv?v=${Date.now()}`);
+        const res = await fetch(`data/${name}.csv`);
+        //const res = await fetch(`data/${name}.csv?v=${Date.now()}`);
         const text = await res.text();
 
         renderCSV(text);
