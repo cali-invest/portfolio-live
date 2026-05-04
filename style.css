@@ -90,4 +90,13 @@ tr:nth-child(even) {
         font-size: 13px;
         padding: 8px;
     }
+
+    th.num, td.num {
+        text-align: right;
+    }
+    
+    th.text, td.text {
+        text-align: left;
+    }
+
 }

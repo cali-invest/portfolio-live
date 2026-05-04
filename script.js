@@ -80,9 +80,14 @@ function renderCSV(csv) {
 
         row.forEach(cell => {
             if (i === 0) {
-                html += `<th>${cell}</th>`;
+                #html += `<th>${cell}</th>`;
+                const sample = rows[1]?.[j];
+                const isNumber = sample && !isNaN(parseFloat(sample));
+                html += `<th class="${isNumber ? 'num' : 'text'}">${cell}</th>`;
             } else {
-                html += `<td>${formatCell(cell)}</td>`;
+                //html += `<td>${formatCell(cell)}</td>`;
+                const isNumber = !isNaN(parseFloat(cell));
+                html += `<td class="${isNumber ? 'num' : 'text'}">${formatCell(cell)}</td>`;
             }
         });
 
