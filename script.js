@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 // ===== PRELOAD ALL =====
 async function preloadAll() {
     const promises = FILES.map(async (name) => {
-        const res = await fetch(`data/${name}.csv`);
+        //const res = await fetch(`data/${name}.csv`);
+        const res = await fetch(`data/${name}.csv?ts=${Date.now()}`, {
+            cache: "no-store"
+        });
         const text = await res.text();
         CACHE[name] = text;
 
