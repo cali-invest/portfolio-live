@@ -78,15 +78,16 @@ function renderCSV(csv) {
     rows.forEach((row, i) => {
         html += "<tr>";
 
-        row.forEach(cell => {
+        row.forEach((cell, j) => {
             if (i === 0) {
-                #html += `<th>${cell}</th>`;
+                // 👉 header căn theo data
                 const sample = rows[1]?.[j];
                 const isNumber = sample && !isNaN(parseFloat(sample));
+
                 html += `<th class="${isNumber ? 'num' : 'text'}">${cell}</th>`;
             } else {
-                //html += `<td>${formatCell(cell)}</td>`;
                 const isNumber = !isNaN(parseFloat(cell));
+
                 html += `<td class="${isNumber ? 'num' : 'text'}">${formatCell(cell)}</td>`;
             }
         });

@@ -91,12 +91,15 @@ tr:nth-child(even) {
         padding: 8px;
     }
 
-    th.num, td.num {
-        text-align: right;
-    }
-    
-    th.text, td.text {
-        text-align: left;
-    }
 
+}
+
+/* ===== ALIGN ===== */
+th.num, td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+th.text, td.text {
+    text-align: left;
 }
