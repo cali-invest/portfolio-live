@@ -4,17 +4,32 @@ const FILES = [
     "DSI_raw"
 ];
 
+// ===== CACHE =====
+const CACHE = {};
+
 // ===== INIT =====
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    await preloadAll();     // 👉 load hết trước
     renderTabs();
-    loadTab(FILES[0]); // load tab đầu tiên
+    loadTab(FILES[0]);      // 👉 render ngay (không delay)
 });
+
+// ===== PRELOAD ALL =====
+async function preloadAll() {
+    const promises = FILES.map(async (name) => {
+        const res = await fetch(`data/${name}.csv`);
+        const text = await res.text();
+        CACHE[name] = text;
+    });
+
+    await Promise.all(promises);
+}
 
 // ===== RENDER TABS =====
 function renderTabs() {
     let html = "";
 
-    FILES.forEach((name, index) => {
+    FILES.forEach((name) => {
         html += `
             <button class="tab-btn" onclick="loadTab('${name}', this)">
                 ${name.toUpperCase()}
@@ -24,29 +39,18 @@ function renderTabs() {
 
     document.getElementById("tabs").innerHTML = html;
 
-    // active tab đầu tiên
     setTimeout(() => {
         const firstBtn = document.querySelector(".tab-btn");
         if (firstBtn) firstBtn.classList.add("active");
     }, 0);
 }
 
-// ===== LOAD CSV =====
-async function loadTab(name, btn = null) {
-    try {
-        // highlight active tab
-        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-        if (btn) btn.classList.add("active");
+// ===== LOAD TAB (NO FETCH) =====
+function loadTab(name, btn = null) {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    if (btn) btn.classList.add("active");
 
-        const res = await fetch(`data/${name}.csv`);
-        //const res = await fetch(`data/${name}.csv?v=${Date.now()}`);
-        const text = await res.text();
-
-        renderCSV(text);
-
-    } catch (err) {
-        document.getElementById("content").innerHTML = `<p>❌ Load lỗi: ${name}</p>`;
-    }
+    renderCSV(CACHE[name]); // 👉 dùng cache
 }
 
 // ===== RENDER TABLE =====
@@ -72,19 +76,10 @@ function renderCSV(csv) {
     html += "</table>";
 
     document.getElementById("content").innerHTML = html;
-    const now = new Date();
-    document.getElementById("last-updated").innerText =
-        "Last updated: " + now.toLocaleString();
 }
 
 // ===== FORMAT CELL =====
 function formatCell(val) {
-    // number format
     const num = parseFloat(val);
-
-    if (!isNaN(num)) {
-        return num.toLocaleString();
-    }
-
-    return val;
+    return !isNaN(num) ? num.toLocaleString() : val;
 }
