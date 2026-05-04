@@ -29,6 +29,8 @@ async function preloadAll() {
         if (CACHE[name] !== text) {
             CACHE[name] = text;
             META[name] = lastModified;
+        } else if (!META[name]) {
+            META[name] = lastModified;
         }
     });
 
