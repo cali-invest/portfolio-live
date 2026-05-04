@@ -24,7 +24,12 @@ async function preloadAll() {
 
         // 👉 lấy last modified
         const lastModified = res.headers.get("Last-Modified");
-        META[name] = lastModified;
+        //META[name] = lastModified;
+        // 👉 nếu data khác → update cache
+        if (CACHE[name] !== text) {
+            CACHE[name] = text;
+            META[name] = lastModified;
+        }
     });
 
     await Promise.all(promises);
