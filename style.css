@@ -82,8 +82,8 @@ tr:nth-child(even) {
     }
 
     .tab-btn {
-        font-size: 18px;
-        padding: 12px;
+        font-size: 14px;   /* giảm từ 18 xuống */
+        padding: 10px 8px; /* gọn lại */
     }
 
     th, td {
