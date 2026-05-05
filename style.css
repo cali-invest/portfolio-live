@@ -103,3 +103,10 @@ th.num, td.num {
 th.text, td.text {
     text-align: left;
 }
+
+#last-updated {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
