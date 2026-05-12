@@ -1,7 +1,7 @@
 // ===== CONFIG =====
 const FILES = [
-    "PORTFOLIO",
     "DSI_raw",
+    "PORTFOLIO",
     "order_flow",
     "ATC"
 ];
