@@ -3,7 +3,7 @@ const FILES = [
     "DSI_raw",
     "PORTFOLIO",
     "order_flow",
-    "ATC"
+    "ATC",
     "CMD"
 ];
 
