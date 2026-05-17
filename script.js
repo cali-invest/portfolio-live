@@ -4,7 +4,8 @@ const FILES = [
     "PORTFOLIO",
     "order_flow",
     "ATC",
-    "CMD"
+    "CMD",
+    "CMD2"
 ];
 
 // ===== CACHE =====
