@@ -4,6 +4,7 @@ const FILES = [
     "PORTFOLIO",
     "order_flow",
     "ATC",
+    "T33",
     "CMD",
     "CMD2"
 ];
