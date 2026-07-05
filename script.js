@@ -6,7 +6,8 @@ const FILES = [
     "ATC",
     "T33",
     "CMD",
-    "CMD2"
+    "CMD2",
+    "NEWS"
 ];
 
 // ===== CACHE =====
