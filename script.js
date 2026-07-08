@@ -64,7 +64,7 @@ function loadTab(name, btn = null) {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     if (btn) btn.classList.add("active");
 
-    renderCSV(CACHE[name]); // 👉 dùng cache
+    renderCSV(CACHE[name], name); // 👉 dùng cache
 
     // 👉 hiển thị last modified
     const lm = META[name];
