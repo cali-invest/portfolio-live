@@ -78,8 +78,39 @@ function loadTab(name, btn = null) {
 
 }
 
+// // ===== RENDER TABLE =====
+// function renderCSV(csv) {
+//     const rows = csv.trim().split("\n").map(r => r.split(","));
+// 
+//     let html = "<table>";
+// 
+//     rows.forEach((row, i) => {
+//         html += "<tr>";
+// 
+//         row.forEach((cell, j) => {
+//             if (i === 0) {
+//                 // 👉 header căn theo data
+//                 const sample = rows[1]?.[j];
+//                 const isNumber = sample && !isNaN(parseFloat(sample));
+// 
+//                 html += `<th class="${isNumber ? 'num' : 'text'}">${cell}</th>`;
+//             } else {
+//                 const isNumber = !isNaN(parseFloat(cell));
+// 
+//                 html += `<td class="${isNumber ? 'num' : 'text'}">${formatCell(cell)}</td>`;
+//             }
+//         });
+// 
+//         html += "</tr>";
+//     });
+// 
+//     html += "</table>";
+// 
+//     document.getElementById("content").innerHTML = html;
+// }
+
 // ===== RENDER TABLE =====
-function renderCSV(csv) {
+function renderCSV(csv, fileName) {
     const rows = csv.trim().split("\n").map(r => r.split(","));
 
     let html = "<table>";
@@ -89,7 +120,7 @@ function renderCSV(csv) {
 
         row.forEach((cell, j) => {
             if (i === 0) {
-                // 👉 header căn theo data
+                // Header căn theo data
                 const sample = rows[1]?.[j];
                 const isNumber = sample && !isNaN(parseFloat(sample));
 
@@ -97,7 +128,18 @@ function renderCSV(csv) {
             } else {
                 const isNumber = !isNaN(parseFloat(cell));
 
-                html += `<td class="${isNumber ? 'num' : 'text'}">${formatCell(cell)}</td>`;
+                let value = formatCell(cell);
+
+                // Chỉ áp dụng cho sheet NEWS
+                if (
+                    fileName === "NEWS" &&
+                    cell.startsWith("http")
+                ) {
+                    const postID = cell.split("/").pop();
+                    value = `<a href="${cell}" target="_blank">${postID}</a>`;
+                }
+
+                html += `<td class="${isNumber ? 'num' : 'text'}">${value}</td>`;
             }
         });
 
